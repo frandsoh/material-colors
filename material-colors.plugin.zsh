@@ -4,31 +4,31 @@
 #   zinit load frandsoh/colors #DO_NOT_INCLUDE_LINE_IN_ZPM_CACHE
 # fi #DO_NOT_INCLUDE_LINE_IN_ZPM_CACHE
 
-DIRCOLORS_CACHE_FILE="${TMPDIR:-/tmp}/zsh-${UID}/material-dircolors.zsh"
 
 # Dircolors
-source "${DIRCOLORS_CACHE_FILE}" 2>/dev/null || {
-  # Standarized $0 handling, following:
-  # https://zdharma-continuum.github.io/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html
-  0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
-  0="${${(M)0:#/*}:-$PWD/$0}"
-  _DIRNAME="${0:h}"
+# Standarized $0 handling, following:
+# https://zdharma-continuum.github.io/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html
+0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
+0="${${(M)0:#/*}:-$PWD/$0}"
+_DIRNAME="${0:h}"
 
-  mkdir -p "${TMPDIR:-/tmp}/zsh-${UID}"
+DIRCOLORS_CACHE_FILE="${_DIRNAME}/material-dircolors.zsh"
 
-  local COMMAND
-  if (( $+commands[dircolors] )); then
-    COMMAND="dircolors"
-  elif (( $+commands[gdircolors] )); then
-    COMMAND="gdircolors"
-  fi
+# mkdir -p "${TMPDIR:-/tmp}/zsh-${UID}"
 
-  for file in "${_DIRNAME}/dircolors/"*.dircolors; do
-    cat "$file"
-  done | $COMMAND - > "${DIRCOLORS_CACHE_FILE}"
+local COMMAND
+if (( $+commands[dircolors] )); then
+  COMMAND="dircolors"
+elif (( $+commands[gdircolors] )); then
+  COMMAND="gdircolors"
+fi
 
-  source "${DIRCOLORS_CACHE_FILE}"
-}
+for file in "${_DIRNAME}/dircolors/"*.dircolors; do
+  cat "$file"
+done | $COMMAND - > "${DIRCOLORS_CACHE_FILE}"
+
+source "${DIRCOLORS_CACHE_FILE}"
+
 
 zstyle ':completion:*' list-dirs-first true
 # Zsh colors
