@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-if (( $+functions[zpm] )); then #DO_NOT_INCLUDE_LINE_IN_ZPM_CACHE
-  zpm load zpm-zsh/colors #DO_NOT_INCLUDE_LINE_IN_ZPM_CACHE
+if (( $+functions[zinit] )); then #DO_NOT_INCLUDE_LINE_IN_ZPM_CACHE
+  zinit load frandsoh/colors #DO_NOT_INCLUDE_LINE_IN_ZPM_CACHE
 fi #DO_NOT_INCLUDE_LINE_IN_ZPM_CACHE
 
 DIRCOLORS_CACHE_FILE="${TMPDIR:-/tmp}/zsh-${UID}/material-dircolors.zsh"
