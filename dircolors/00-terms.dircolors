@@ -33,3 +33,4 @@ TERM st-256color
 TERM terminator
 TERM vt100
 TERM xterm*
+TERM iterm2
